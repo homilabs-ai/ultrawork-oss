@@ -1,0 +1,1 @@
+ALTER TABLE `agents` DROP COLUMN `scratchpad_md`;

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <title>Ultrawork</title>
+  <!-- macOS app icon: the landing-page three-dot mark on a light squircle plate.
+       Plate follows Apple's icon grid (824px body, 100px margin). Regenerate with
+       `bun run desktop:icon`. -->
+  <defs>
+    <linearGradient id="plate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbfaf9" />
+      <stop offset="1" stop-color="#efedeb" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity="0.22" />
+    </filter>
+  </defs>
+  <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#plate)" filter="url(#shadow)" />
+  <g transform="translate(512 512) scale(30) translate(-12 -11.7)" fill="#191919">
+    <circle cx="12" cy="7.2" r="2.35" />
+    <circle cx="7.2" cy="16.2" r="2.35" />
+    <circle cx="16.8" cy="16.2" r="2.35" />
+  </g>
+</svg>

@@ -1,0 +1,1 @@
+ALTER TABLE `runs` ADD `worker_thinking_level` text;
