@@ -23,12 +23,7 @@ export function Header(args: HeaderProps) {
       </div>
       <div className="flex shrink-0 items-center gap-2">
         {canStop ? (
-          <Button
-            variant="destructive"
-            size="sm"
-            disabled={stopping}
-            onClick={onStop}
-          >
+          <Button variant="destructive" size="sm" disabled={stopping} onClick={onStop}>
             <Square />
             {stopping ? "Stopping..." : "Stop"}
           </Button>

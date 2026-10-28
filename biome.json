@@ -21,15 +21,15 @@
   },
   "files": {
     "includes": [
-      "src/main/**",
-      "src/server/**",
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "!src/renderer/routeTree.gen.ts",
       "scripts/**",
       "test/**",
       "*.ts",
-      "!vite.config.ts",
-      "package.json",
-      "biome.json",
-      "tsconfig.json"
+      "*.json",
+      "src/renderer/tsconfig.json",
+      ".github/**/*.json"
     ]
   }
 }

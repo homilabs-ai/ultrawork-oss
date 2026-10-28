@@ -1,14 +1,15 @@
 import { Database } from "bun:sqlite";
-import { drizzle, type BunSQLiteDatabase } from "drizzle-orm/bun-sqlite";
-import { migrate } from "drizzle-orm/bun-sqlite/migrator";
 import { mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { type BunSQLiteDatabase, drizzle } from "drizzle-orm/bun-sqlite";
+import { migrate } from "drizzle-orm/bun-sqlite/migrator";
 import { schema } from "./schema.ts";
 
 export type DB = BunSQLiteDatabase<typeof schema>;
 
-const MIGRATIONS_DIR = process.env.MIGRATIONS_DIR || join(dirname(fileURLToPath(import.meta.url)), "../../../../drizzle");
+const MIGRATIONS_DIR =
+  process.env.MIGRATIONS_DIR || join(dirname(fileURLToPath(import.meta.url)), "../../../../drizzle");
 
 export interface OpenedDb {
   db: DB;

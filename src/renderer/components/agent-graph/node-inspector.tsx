@@ -21,18 +21,12 @@ export function NodeInspector(args: NodeInspectorProps) {
         {data && <StatusBadge status={data.status} variant="pill" dot />}
       </header>
 
-      {!data && (
-        <p className="mt-2 text-sm text-muted-foreground">
-          Select a node to inspect it.
-        </p>
-      )}
+      {!data && <p className="mt-2 text-sm text-muted-foreground">Select a node to inspect it.</p>}
 
       {data && node && (
         <div className="panel-body text-sm">
           <div className="text-foreground">{data.fullLabel}</div>
-          <div className="mt-0.5 truncate font-mono text-[10px] text-muted-foreground">
-            {data.taskId ?? node.id}
-          </div>
+          <div className="mt-0.5 truncate font-mono text-[10px] text-muted-foreground">{data.taskId ?? node.id}</div>
 
           {data.kind === "task" && detail && (
             <div className="mt-1 text-xs text-muted-foreground">
@@ -48,9 +42,7 @@ export function NodeInspector(args: NodeInspectorProps) {
 
           <div className="divider-block">
             <div className="label-caption">Scope</div>
-            <div className="mt-1 whitespace-pre-wrap break-words text-muted-foreground">
-              {data.scope}
-            </div>
+            <div className="mt-1 whitespace-pre-wrap break-words text-muted-foreground">{data.scope}</div>
           </div>
 
           {data.kind === "task" && taskQuery.isLoading && (

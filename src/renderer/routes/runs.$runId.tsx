@@ -1,11 +1,7 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 
 import { Header } from "@/components/runs/header";
-import {
-  useRunState,
-  useRunStream,
-  useStopRun,
-} from "@/hooks/use-runs";
+import { useRunState, useRunStream, useStopRun } from "@/hooks/use-runs";
 
 export const Route = createFileRoute("/runs/$runId")({
   component: RunLayout,
@@ -32,8 +28,7 @@ function RunLayout() {
             .find((line) => line.trim().length > 0)
             ?.replace(/^#+\s*/, "")
             .trim()
-            .slice(0, 80) ||
-          `Goal ${runId.slice(0, 8)}`
+            .slice(0, 80) || `Goal ${runId.slice(0, 8)}`
         }
       />
 
@@ -41,9 +36,7 @@ function RunLayout() {
         <div className="panel center-note">
           <p className="text-destructive">Failed to load run state.</p>
           <p className="max-w-lg truncate text-muted-foreground/70">
-            {stateQuery.error instanceof Error
-              ? stateQuery.error.message
-              : String(stateQuery.error)}
+            {stateQuery.error instanceof Error ? stateQuery.error.message : String(stateQuery.error)}
           </p>
         </div>
       ) : (

@@ -2,11 +2,7 @@ import type { Edge, Node } from "@xyflow/react";
 import { hierarchy, tree } from "d3-hierarchy";
 
 import { STATUS_TEXT, statusIntent } from "@/lib/status";
-import type {
-  AgentRole,
-  RunAgent,
-  RunTask,
-} from "@/types/runs";
+import type { AgentRole, RunAgent, RunTask } from "@/types/runs";
 
 export type AgentNodeData = {
   kind: "agent" | "task";
@@ -103,7 +99,6 @@ export function buildAgentTree(args: {
 
   const tasksByRequester = new Map<string, TreeNode[]>();
   for (const task of ordered) {
-
     const label = task.title || headline(task.scope, "Untitled task");
     const node: TreeNode = {
       id: `task:${task.id}`,

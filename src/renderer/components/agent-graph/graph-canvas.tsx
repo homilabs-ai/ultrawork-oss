@@ -2,12 +2,12 @@ import {
   Background,
   BackgroundVariant,
   Controls,
+  type Edge,
   MiniMap,
+  type Node,
   ReactFlow,
   ReactFlowProvider,
   useReactFlow,
-  type Edge,
-  type Node,
 } from "@xyflow/react";
 import { useEffect, useRef } from "react";
 
@@ -54,9 +54,7 @@ function Canvas(args: GraphCanvasProps) {
     if (!userMoved.current) void fitView(FIT_OPTIONS);
   }, [nodeCount, fitView]);
 
-  const decorated = nodes.map((node) =>
-    node.id === selectedId ? { ...node, selected: true } : node,
-  );
+  const decorated = nodes.map((node) => (node.id === selectedId ? { ...node, selected: true } : node));
 
   return (
     <ReactFlow
@@ -89,9 +87,7 @@ function Canvas(args: GraphCanvasProps) {
         pannable
         zoomable
         nodeStrokeWidth={0}
-        nodeColor={(node: Node) =>
-          MINIMAP_COLOR[statusIntent(String(node.data?.status ?? "idle"))]!
-        }
+        nodeColor={(node: Node) => MINIMAP_COLOR[statusIntent(String(node.data?.status ?? "idle"))]!}
       />
     </ReactFlow>
   );

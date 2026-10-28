@@ -1,7 +1,6 @@
 import { Files } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
 import { VerifierBadge } from "@/components/runs/verifier-badge";
+import { Button } from "@/components/ui/button";
 import { StatusBadge } from "@/components/ui/status-badge";
 import type { RunTask } from "@/types/runs";
 

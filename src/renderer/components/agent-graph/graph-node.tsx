@@ -1,9 +1,4 @@
-import {
-  Handle,
-  Position,
-  type NodeProps,
-  type NodeTypes,
-} from "@xyflow/react";
+import { Handle, type NodeProps, type NodeTypes, Position } from "@xyflow/react";
 import { Crown, GitBranch, Hammer } from "lucide-react";
 
 import { StatusBadge } from "@/components/ui/status-badge";
@@ -29,27 +24,16 @@ function GraphNodeCard({ data, selected }: NodeProps<AgentFlowNode>) {
         STATUS_TEXT[intent],
       )}
     >
-      <Handle
-        type="target"
-        position={Position.Left}
-        style={HIDDEN_HANDLE}
-        isConnectable={false}
-      />
+      <Handle type="target" position={Position.Left} style={HIDDEN_HANDLE} isConnectable={false} />
 
       <span className="relative flex size-4 shrink-0 items-center justify-center">
         <Icon className="size-3.5" />
-        {intent === "active" && (
-          <span className="absolute inset-0 animate-ping rounded-full bg-current opacity-40" />
-        )}
+        {intent === "active" && <span className="absolute inset-0 animate-ping rounded-full bg-current opacity-40" />}
       </span>
 
       <span className="min-w-0 flex-1">
-        <span className="block truncate text-xs text-foreground">
-          {data.label}
-        </span>
-        <span className="block truncate text-[10px] text-muted-foreground">
-          {data.sublabel}
-        </span>
+        <span className="block truncate text-xs text-foreground">{data.label}</span>
+        <span className="block truncate text-[10px] text-muted-foreground">{data.sublabel}</span>
       </span>
 
       {data.unread > 0 && (
@@ -59,12 +43,7 @@ function GraphNodeCard({ data, selected }: NodeProps<AgentFlowNode>) {
       )}
       <StatusBadge status={data.status} dot label={false} />
 
-      <Handle
-        type="source"
-        position={Position.Right}
-        style={HIDDEN_HANDLE}
-        isConnectable={false}
-      />
+      <Handle type="source" position={Position.Right} style={HIDDEN_HANDLE} isConnectable={false} />
     </div>
   );
 }

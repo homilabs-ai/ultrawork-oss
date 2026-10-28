@@ -1,4 +1,5 @@
-const PERMANENT = /prompt is too long|context[ _-]?length|maximum context|too many tokens|max_tokens|invalid[_ ]request|api key|unauthorized|forbidden|permission|credit balance|billing|not found/i;
+const PERMANENT =
+  /prompt is too long|context[ _-]?length|maximum context|too many tokens|max_tokens|invalid[_ ]request|api key|unauthorized|forbidden|permission|credit balance|billing|not found/i;
 
 const TRANSIENT =
   /timed out|timeout|overloaded|rate.?limit|too many requests|econnreset|epipe|etimedout|enotfound|socket|fetch failed|network|internal server error|service unavailable|bad gateway|temporarily/i;

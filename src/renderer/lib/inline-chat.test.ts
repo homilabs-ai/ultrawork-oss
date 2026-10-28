@@ -1,7 +1,6 @@
 import { describe, expect, test } from "bun:test";
-
-import { buildInlineChatBubbles, splitAttachments } from "./inline-chat";
 import type { PlannerTranscriptItem } from "@/types/runs";
+import { buildInlineChatBubbles, splitAttachments } from "./inline-chat";
 
 describe("buildInlineChatBubbles", () => {
   test("includes the goal as the first user bubble and only inline replies", () => {

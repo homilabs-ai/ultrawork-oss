@@ -1,17 +1,8 @@
-import { Check, Circle, CircleX, Loader, Pause } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import type {
-  AgentStatus,
-  RunStatus,
-  TaskStatus,
-} from "@/types/runs";
+import { Check, Circle, CircleX, Loader, Pause } from "lucide-react";
+import type { AgentStatus, RunStatus, TaskStatus } from "@/types/runs";
 
-export type StatusIntent =
-  | "active"
-  | "waiting"
-  | "success"
-  | "danger"
-  | "idle";
+export type StatusIntent = "active" | "waiting" | "success" | "danger" | "idle";
 
 export const STATUS_INTENT = {
   running: "active",
@@ -23,17 +14,12 @@ export const STATUS_INTENT = {
   cancelled: "danger",
   pending: "idle",
   idle: "idle",
-} satisfies Record<
-  RunStatus | TaskStatus | AgentStatus | "planning",
-  StatusIntent
->;
+} satisfies Record<RunStatus | TaskStatus | AgentStatus | "planning", StatusIntent>;
 
 export type KnownStatus = keyof typeof STATUS_INTENT;
 
 export function statusIntent(status: string): StatusIntent {
-  return (
-    STATUS_INTENT[status.toLowerCase() as KnownStatus] ?? "idle"
-  );
+  return STATUS_INTENT[status.toLowerCase() as KnownStatus] ?? "idle";
 }
 
 export const STATUS_TEXT: Record<StatusIntent, string> = {

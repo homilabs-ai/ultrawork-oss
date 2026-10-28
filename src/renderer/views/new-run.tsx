@@ -1,4 +1,4 @@
-import { attachmentPaths } from "@/lib/desktop";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 
 import {
@@ -8,17 +8,16 @@ import {
   PromptInputBody,
   PromptInputFooter,
   PromptInputHeader,
+  type PromptInputMessage,
   PromptInputSubmit,
   PromptInputTextarea,
   PromptInputTools,
-  type PromptInputMessage,
 } from "@/components/ai-elements/prompt-input";
-
-import { useCreateRun, useModels } from "@/hooks/use-runs";
-import { Link, useNavigate } from "@tanstack/react-router";
 import { ModelPicker } from "@/components/runs/model-picker";
 import { PluginSelector } from "@/components/runs/new-run-selectors";
 import { useModelChoice } from "@/hooks/use-model-choice";
+import { useCreateRun, useModels } from "@/hooks/use-runs";
+import { attachmentPaths } from "@/lib/desktop";
 
 export function NewRun() {
   const [text, setText] = useState("");

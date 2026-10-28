@@ -1,10 +1,9 @@
 import { expect, test } from "bun:test";
 import { mkdtempSync } from "node:fs";
-import { cancelTaskTool } from "@/core/agents/tools/cancel-task.ts";
-import { steerTaskTool } from "@/core/agents/tools/steer-task.ts";
-import { TaskSteering } from "@/core/runtime/steering.ts";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { cancelTaskTool } from "@/core/agents/tools/cancel-task.ts";
+import { steerTaskTool } from "@/core/agents/tools/steer-task.ts";
 import {
   type AgentDriver,
   EventBus,
@@ -17,6 +16,7 @@ import {
   SqliteTransport,
   type TaskRow,
 } from "@/core/index.ts";
+import { TaskSteering } from "@/core/runtime/steering.ts";
 
 function tmpConfig(overrides: Partial<HarnessConfig> = {}): HarnessConfig {
   const dir = mkdtempSync(join(tmpdir(), "harness-"));
@@ -365,7 +365,13 @@ test("cancelTask stops a running worker; no handoff, planner not re-woken", asyn
       const agent = h.repo.getAgent(agentId)!;
       h.transport.drainInbox(agentId);
       if (h.repo.listTasks(agent.run_id).length === 0) {
-        h.transport.enqueueTask({ runId: agent.run_id, requesterAgentId: agentId, title: "slow", scopeMd: "slow", depth: 1 });
+        h.transport.enqueueTask({
+          runId: agent.run_id,
+          requesterAgentId: agentId,
+          title: "slow",
+          scopeMd: "slow",
+          depth: 1,
+        });
       }
     },
     runWorker(_task: TaskRow, signal?: AbortSignal): Promise<Handoff> {

@@ -1,7 +1,6 @@
 import { ArrowLeftIcon } from "lucide-react";
-
-import { VerifierBadge } from "@/components/runs/verifier-badge";
 import { TaskHandoff, TaskTimes, TaskTranscript } from "@/components/runs/task-transcript";
+import { VerifierBadge } from "@/components/runs/verifier-badge";
 import { StatusBadge } from "@/components/ui/status-badge";
 import type { TaskDetail } from "@/types/runs";
 
@@ -32,15 +31,9 @@ export function ActiveWorker(args: ActiveWorkerProps) {
         <span>Active Worker</span>
       </header>
 
-      {loading && (
-        <p className="mt-2 text-sm text-muted-foreground">Loading worker…</p>
-      )}
+      {loading && <p className="mt-2 text-sm text-muted-foreground">Loading worker…</p>}
 
-      {error && (
-        <p className="mt-2 text-sm text-destructive">
-          Failed to load task: {error.message}
-        </p>
-      )}
+      {error && <p className="mt-2 text-sm text-destructive">Failed to load task: {error.message}</p>}
 
       {detail && (
         <div className="panel-body text-sm">

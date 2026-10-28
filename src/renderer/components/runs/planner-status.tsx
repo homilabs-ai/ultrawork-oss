@@ -2,11 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { ArtifactMarkdown, ArtifactText } from "@/components/artifacts/artifact-reference";
 import { InlineChat } from "@/components/runs/inline-chat";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { cn } from "@/lib/utils";
 import type { PlannerTranscriptItem, RootPlannerState, Run } from "@/types/runs";
@@ -23,9 +19,7 @@ function GoalBrief({ run }: Readonly<{ run: Run }>) {
     <li className="border-l-2 border-brand/70 pl-2.5 text-sm">
       <div className="label-caption">Goal brief</div>
       <div className="mt-0.5 wrap-break-word">
-        <ArtifactMarkdown>
-          {run.instruction_md}
-        </ArtifactMarkdown>
+        <ArtifactMarkdown>{run.instruction_md}</ArtifactMarkdown>
       </div>
     </li>
   );
@@ -37,9 +31,7 @@ function TranscriptLine({ item }: { item: PlannerTranscriptItem }) {
       <li className="border-l-2 border-brand/70 pl-2.5 text-sm">
         <div className="label-caption">Steer</div>
         <p className="mt-0.5 whitespace-pre-wrap wrap-break-word">
-          <ArtifactText>
-            {item.text}
-          </ArtifactText>
+          <ArtifactText>{item.text}</ArtifactText>
         </p>
       </li>
     );
@@ -48,44 +40,29 @@ function TranscriptLine({ item }: { item: PlannerTranscriptItem }) {
     const label = item.toolName ?? "tool";
 
     return (
-      <li
-        className={cn(
-          "truncate text-sm",
-          item.isError ? "text-destructive" : "text-muted-foreground",
-        )}
-      >
+      <li className={cn("truncate text-sm", item.isError ? "text-destructive" : "text-muted-foreground")}>
         <HoverCard>
           <HoverCardTrigger delay={100} closeDelay={200}>
             <span className="font-medium">{label}</span>
             <span>: </span>
-            <ArtifactText>
-              {item.text}
-            </ArtifactText>
-            {item.result === undefined && !item.unresolved && (
-              <span className="ml-1 opacity-60">…</span>
-            )}
+            <ArtifactText>{item.text}</ArtifactText>
+            {item.result === undefined && !item.unresolved && <span className="ml-1 opacity-60">…</span>}
           </HoverCardTrigger>
           <HoverCardContent className="w-auto max-w-lg space-y-2 whitespace-normal break-words">
             <div className="font-medium">{label}</div>
             {item.args && (
               <div>
                 <div className="label-caption">Args</div>
-                <pre className="max-h-48 overflow-auto text-xs">
-                  {item.args}
-                </pre>
+                <pre className="max-h-48 overflow-auto text-xs">{item.args}</pre>
               </div>
             )}
             {item.result === undefined ? (
-              <div className="text-xs text-muted-foreground">
-                {item.unresolved ? "No result recorded" : "Running…"}
-              </div>
+              <div className="text-xs text-muted-foreground">{item.unresolved ? "No result recorded" : "Running…"}</div>
             ) : (
               item.result && (
                 <div>
                   <div className="label-caption">Result</div>
-                  <pre className="max-h-48 overflow-auto text-xs">
-                    {item.result}
-                  </pre>
+                  <pre className="max-h-48 overflow-auto text-xs">{item.result}</pre>
                 </div>
               )
             )}
@@ -96,20 +73,12 @@ function TranscriptLine({ item }: { item: PlannerTranscriptItem }) {
   }
   return (
     <li className="text-sm">
-      <ArtifactMarkdown>
-        {item.text}
-      </ArtifactMarkdown>
+      <ArtifactMarkdown>{item.text}</ArtifactMarkdown>
     </li>
   );
 }
 
-function PaneSwitch({
-  pane,
-  onChange,
-}: {
-  pane: Pane;
-  onChange: (pane: Pane) => void;
-}) {
+function PaneSwitch({ pane, onChange }: { pane: Pane; onChange: (pane: Pane) => void }) {
   return (
     <div className="flex items-center gap-0.5 rounded-lg bg-muted/60 p-0.5">
       {(
@@ -124,9 +93,7 @@ function PaneSwitch({
           onClick={() => onChange(id)}
           className={cn(
             "rounded-md px-2.5 py-1 text-xs transition-colors",
-            pane === id
-              ? "bg-card text-foreground shadow-panel"
-              : "text-muted-foreground hover:text-foreground",
+            pane === id ? "bg-card text-foreground shadow-panel" : "text-muted-foreground hover:text-foreground",
           )}
         >
           {label}
@@ -156,9 +123,7 @@ export function PlannerStatus(args: PlannerStatusProps) {
           <span>Root planner</span>
           <PaneSwitch pane={pane} onChange={setPane} />
         </header>
-        <p className="mt-2 text-sm text-muted-foreground">
-          No root planner for this run.
-        </p>
+        <p className="mt-2 text-sm text-muted-foreground">No root planner for this run.</p>
         {pane === "chat" ? (
           <InlineChat run={run} transcript={[]} />
         ) : (
@@ -181,27 +146,16 @@ export function PlannerStatus(args: PlannerStatusProps) {
             {status === "active" ? "working" : "idle"}
           </StatusBadge>
           <span className="truncate text-muted-foreground">
-            · turn {turnCount} ·{" "}
-            <span className={cn(unread > 0 && "text-status-waiting")}>
-              {unread} unread
-            </span>
+            · turn {turnCount} · <span className={cn(unread > 0 && "text-status-waiting")}>{unread} unread</span>
           </span>
         </div>
         <PaneSwitch pane={pane} onChange={setPane} />
       </header>
 
-      {lastError && (
-        <p className="mt-2 shrink-0 text-sm text-destructive">
-          Error: {lastError}
-        </p>
-      )}
+      {lastError && <p className="mt-2 shrink-0 text-sm text-destructive">Error: {lastError}</p>}
 
       {pane === "chat" ? (
-        <InlineChat
-          run={run}
-          transcript={transcript}
-          isAgentWorking={status === "active"}
-        />
+        <InlineChat run={run} transcript={transcript} isAgentWorking={status === "active"} />
       ) : (
         <div ref={bodyRef} className="panel-body mt-3">
           <div className="label-caption">Full transcript</div>

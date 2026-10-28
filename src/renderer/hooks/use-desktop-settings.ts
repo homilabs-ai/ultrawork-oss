@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { desktop, type DesktopSettings } from "@/lib/desktop";
+import { type DesktopSettings, desktop } from "@/lib/desktop";
 
 export const SETTINGS_QUERY_KEY = ["desktop-settings"] as const;
 

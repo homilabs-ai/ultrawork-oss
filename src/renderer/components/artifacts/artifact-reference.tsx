@@ -38,8 +38,7 @@ function artifactLinks(artifacts: ArtifactFile[]): ArtifactLinks {
   let pattern: RegExp | null = null;
   try {
     pattern = paths.length > 0 ? new RegExp(`(${escaped.join("|")})`, "g") : null;
-  } catch {
-  }
+  } catch {}
   const links = { byPath, pattern };
   linksCache.set(artifacts, links);
   return links;

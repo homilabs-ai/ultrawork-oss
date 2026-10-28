@@ -1,6 +1,4 @@
-import { attachmentPaths } from "@/lib/desktop";
 import { useState } from "react";
-
 import {
   PromptInput,
   PromptInputAddAttachmentsButton,
@@ -8,12 +6,13 @@ import {
   PromptInputBody,
   PromptInputFooter,
   PromptInputHeader,
+  type PromptInputMessage,
   PromptInputSubmit,
   PromptInputTextarea,
   PromptInputTools,
-  type PromptInputMessage,
 } from "@/components/ai-elements/prompt-input";
 import { useSteerRun } from "@/hooks/use-runs";
+import { attachmentPaths } from "@/lib/desktop";
 
 export function SteerInput({ runId, disabled = false }: Readonly<{ runId: string; disabled?: boolean }>) {
   const [text, setText] = useState("");

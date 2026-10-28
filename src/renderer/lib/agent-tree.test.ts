@@ -1,16 +1,8 @@
 import { describe, expect, test } from "bun:test";
-
+import type { RunAgent, RunTask } from "@/types/runs";
 import { buildAgentTree, dropSharedPrefix, toFlow } from "./agent-tree";
-import type {
-  RunAgent,
-  RunTask,
-} from "@/types/runs";
 
-function agent(
-  id: string,
-  parent: string | null,
-  extra: Partial<RunAgent> = {},
-): RunAgent {
+function agent(id: string, parent: string | null, extra: Partial<RunAgent> = {}): RunAgent {
   return {
     id,
     role: parent ? "planner" : "root",
@@ -23,11 +15,7 @@ function agent(
   };
 }
 
-function task(
-  id: string,
-  requesterAgentId: string,
-  extra: Partial<RunTask> = {},
-): RunTask {
+function task(id: string, requesterAgentId: string, extra: Partial<RunTask> = {}): RunTask {
   return {
     id,
     requesterAgentId,
@@ -46,12 +34,10 @@ function task(
 
 describe("dropSharedPrefix", () => {
   test("strips everything the titles share, up to where they diverge", () => {
-    expect(
-      dropSharedPrefix([
-        "Q2 close — extract Northwind accounts",
-        "Q2 close — extract Contoso accounts",
-      ]),
-    ).toEqual(["Northwind accounts", "Contoso accounts"]);
+    expect(dropSharedPrefix(["Q2 close — extract Northwind accounts", "Q2 close — extract Contoso accounts"])).toEqual([
+      "Northwind accounts",
+      "Contoso accounts",
+    ]);
   });
 
   test("leaves titles alone when the shared prefix is short", () => {
@@ -72,9 +58,7 @@ describe("buildAgentTree", () => {
     const [rootNode] = roots;
 
     expect(rootNode!.children.map((c) => c.id)).toEqual(["sub", "task:t1"]);
-    expect(rootNode!.children[0]!.children.map((c) => c.id)).toEqual([
-      "task:t2",
-    ]);
+    expect(rootNode!.children[0]!.children.map((c) => c.id)).toEqual(["task:t2"]);
   });
 
   test("surfaces tasks whose requester is missing rather than dropping them", () => {
@@ -102,10 +86,7 @@ describe("buildAgentTree", () => {
     const [rootNode] = roots;
     const [subA, subB] = rootNode!.children;
 
-    expect(subA!.children.map((c) => c.label)).toEqual([
-      "statements",
-      "receipts",
-    ]);
+    expect(subA!.children.map((c) => c.label)).toEqual(["statements", "receipts"]);
     expect(subB!.children.map((c) => c.label)).toEqual(["summary", "appendix"]);
   });
 
@@ -141,9 +122,7 @@ describe("toFlow", () => {
     const byId = new Map(nodes.map((n) => [n.id, n]));
     expect(byId.get("root")!.position.x).toBe(0);
     expect(byId.get("sub")!.position.x).toBeGreaterThan(0);
-    expect(byId.get("task:t1")!.position.x).toBeGreaterThan(
-      byId.get("sub")!.position.x,
-    );
+    expect(byId.get("task:t1")!.position.x).toBeGreaterThan(byId.get("sub")!.position.x);
 
     expect(edges.map((e) => [e.source, e.target])).toEqual([
       ["root", "sub"],

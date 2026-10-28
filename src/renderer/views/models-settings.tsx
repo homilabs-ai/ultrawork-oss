@@ -4,10 +4,10 @@ import { type ReactNode, useEffect, useState } from "react";
 
 import type { ModelInfo, ProviderId } from "@/api/runs";
 import { DesktopOnly, SaveBar, SettingsPage } from "@/components/settings/settings-layout";
-import { useDesktopSettings } from "@/hooks/use-desktop-settings";
 import { Input } from "@/components/ui/input";
+import { useDesktopSettings } from "@/hooks/use-desktop-settings";
 import { useModels } from "@/hooks/use-runs";
-import { desktop, type DesktopSettings, hasApiKey } from "@/lib/desktop";
+import { type DesktopSettings, desktop, hasApiKey } from "@/lib/desktop";
 import { PROVIDERS } from "@/lib/providers";
 import { cn } from "@/lib/utils";
 
@@ -97,9 +97,7 @@ function WebCatalog() {
       <DesktopOnly />
       {PROVIDERS.map((p) => {
         const models = catalog.data?.models.filter((m) => m.provider === p.id) ?? [];
-        return (
-          <ProviderCard key={p.id} provider={p.id} connected={models.some((m) => m.available)} models={models} />
-        );
+        return <ProviderCard key={p.id} provider={p.id} connected={models.some((m) => m.available)} models={models} />;
       })}
     </div>
   );

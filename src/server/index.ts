@@ -1,6 +1,6 @@
+import { createApp } from "@/api/app.ts";
 import { Harness, loadConfig } from "@/core/index.ts";
 import { checkSandbox } from "@/core/runtime/sandbox.ts";
-import { createApp } from "@/api/app.ts";
 
 const config = loadConfig();
 const harness = new Harness(config);
