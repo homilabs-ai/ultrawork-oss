@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Added a `NOTICE` file. The app now ships `LICENSE` and `NOTICE` in its resources.
+
 ## 0.2.0
 
 First open-source release under the Apache License 2.0. Versions 0.1.x were closed-source.
