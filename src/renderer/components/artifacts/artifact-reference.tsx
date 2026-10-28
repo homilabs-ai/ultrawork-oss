@@ -92,6 +92,7 @@ function linkArtifacts(children: string, links: ArtifactLinks, onOpen: OpenArtif
   return children.split(links.pattern).map((part, index) => {
     const artifact = matchingArtifact(part, links);
     return artifact ? (
+      // biome-ignore lint/suspicious/noArrayIndexKey: parts of one split string, never reordered
       <ArtifactReference key={`${part}:${index}`} artifact={artifact} onOpen={onOpen}>
         {part}
       </ArtifactReference>
@@ -104,6 +105,7 @@ function linkArtifacts(children: string, links: ArtifactLinks, onOpen: OpenArtif
 function artifactChildren(children: ReactNode, links: ArtifactLinks, onOpen: OpenArtifact): ReactNode {
   if (typeof children === "string") return linkArtifacts(children, links, onOpen);
   if (Array.isArray(children)) {
+    // biome-ignore lint/suspicious/noArrayIndexKey: markdown children have no ids and never reorder
     return children.map((child, index) => <span key={index}>{artifactChildren(child, links, onOpen)}</span>);
   }
   return children;

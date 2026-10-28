@@ -50,6 +50,7 @@ function ensureInitialized(allowedDomains: string[]): Promise<void> {
 const quote = (s: string) => `'${s.replace(/'/g, `'\\''`)}'`;
 
 const PIN_PROXY_TO_IPV4 =
+  // biome-ignore lint/suspicious/noTemplateCurlyInString: bash parameter expansion, not a JS template
   'for v in HTTP_PROXY HTTPS_PROXY ALL_PROXY http_proxy https_proxy all_proxy; do [ -n "${!v}" ] && export "$v=${!v//localhost/127.0.0.1}"; done;';
 
 const EXTRA_WRITE = ["/tmp", "~/.cache", "~/.npm", "~/Library/Caches"];
@@ -72,7 +73,9 @@ export async function runInSandbox(opts: SandboxOptions): Promise<SandboxResult>
     { commandId: opts.commandId, commandText: opts.command },
   );
 
-  const child = spawn(argv[0]!, argv.slice(1), {
+  const [command, ...args] = argv;
+  if (!command) throw new Error("Sandbox returned an empty command");
+  const child = spawn(command, args, {
     cwd: opts.workspaceRoot,
     env,
     stdio: ["ignore", "pipe", "pipe"],

@@ -1,4 +1,4 @@
-import { type QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { type QueryClient, skipToken, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 import {
   createRun,
@@ -109,16 +109,14 @@ export function useSteerRun() {
 export function useRunState(runId: string | null) {
   return useQuery({
     queryKey: runKeys.state(runId ?? ""),
-    queryFn: () => getRunState(runId!),
-    enabled: Boolean(runId),
+    queryFn: runId ? () => getRunState(runId) : skipToken,
   });
 }
 
 export function useTaskDetail(runId: string | null, taskId: string | null) {
   return useQuery({
     queryKey: runKeys.task(runId ?? "", taskId ?? ""),
-    queryFn: () => getTaskDetail(runId!, taskId!),
-    enabled: Boolean(runId && taskId),
+    queryFn: runId && taskId ? () => getTaskDetail(runId, taskId) : skipToken,
   });
 }
 

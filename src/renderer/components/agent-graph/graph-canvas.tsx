@@ -5,6 +5,7 @@ import {
   type Edge,
   MiniMap,
   type Node,
+  type NodeTypes,
   ReactFlow,
   ReactFlowProvider,
   useReactFlow,
@@ -13,14 +14,16 @@ import { useEffect, useRef } from "react";
 
 import "@xyflow/react/dist/style.css";
 
-import { nodeTypes } from "@/components/agent-graph/graph-node";
+import { GraphNodeCard } from "@/components/agent-graph/graph-node";
 import { useResolvedTheme } from "@/hooks/use-resolved-theme";
 import type { AgentFlowNode } from "@/lib/agent-tree";
-import { statusIntent } from "@/lib/status";
+import { type StatusIntent, statusIntent } from "@/lib/status";
+
+const nodeTypes: NodeTypes = { agent: GraphNodeCard, task: GraphNodeCard };
 
 const FIT_OPTIONS = { padding: 0.15, maxZoom: 1, duration: 300 };
 
-const MINIMAP_COLOR: Record<string, string> = {
+const MINIMAP_COLOR: Record<StatusIntent, string> = {
   active: "var(--status-active)",
   waiting: "var(--status-waiting)",
   success: "var(--status-success)",
@@ -87,7 +90,7 @@ function Canvas(args: GraphCanvasProps) {
         pannable
         zoomable
         nodeStrokeWidth={0}
-        nodeColor={(node: Node) => MINIMAP_COLOR[statusIntent(String(node.data?.status ?? "idle"))]!}
+        nodeColor={(node: Node) => MINIMAP_COLOR[statusIntent(String(node.data?.status ?? "idle"))]}
       />
     </ReactFlow>
   );

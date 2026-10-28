@@ -1,4 +1,4 @@
-import { Handle, type NodeProps, type NodeTypes, Position } from "@xyflow/react";
+import { Handle, type NodeProps, Position } from "@xyflow/react";
 import { Crown, GitBranch, Hammer } from "lucide-react";
 
 import { StatusBadge } from "@/components/ui/status-badge";
@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 const HIDDEN_HANDLE = { opacity: 0, pointerEvents: "none" } as const;
 
-function GraphNodeCard({ data, selected }: NodeProps<AgentFlowNode>) {
+export function GraphNodeCard({ data, selected }: NodeProps<AgentFlowNode>) {
   const intent = statusIntent(data.status);
   const isTask = data.kind === "task";
   const Icon = isTask ? Hammer : data.role === "root" ? Crown : GitBranch;
@@ -47,8 +47,3 @@ function GraphNodeCard({ data, selected }: NodeProps<AgentFlowNode>) {
     </div>
   );
 }
-
-export const nodeTypes: NodeTypes = {
-  agent: GraphNodeCard,
-  task: GraphNodeCard,
-};

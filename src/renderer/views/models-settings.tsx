@@ -114,7 +114,8 @@ function ProviderCard({
   models: ModelInfo[];
   children?: ReactNode;
 }) {
-  const p = PROVIDERS.find((x) => x.id === provider)!;
+  const p = PROVIDERS.find((x) => x.id === provider);
+  if (!p) return null;
   return (
     <section className="surface p-5">
       <div className="flex items-start justify-between gap-4">

@@ -48,7 +48,7 @@ export function dropSharedPrefix(titles: string[]): string[] {
     if (end < MIN_SHARED_PREFIX) return titles;
   }
 
-  while (end > 0 && !TITLE_SEPARATORS.has(first[end - 1]!)) end--;
+  while (end > 0 && !TITLE_SEPARATORS.has(first.charAt(end - 1))) end--;
   if (end < MIN_SHARED_PREFIX) return titles;
 
   const stripped = titles.map((t) =>
@@ -67,7 +67,7 @@ function trimSiblingLabels(siblings: TreeNode[]): void {
     if (group.length > 1) {
       const labels = dropSharedPrefix(group.map((n) => n.fullLabel));
       group.forEach((node, i) => {
-        node.label = labels[i]!;
+        node.label = labels[i] ?? node.label;
       });
     }
   }
@@ -139,14 +139,16 @@ export function buildAgentTree(args: {
 
   const roots: TreeNode[] = [];
   for (const agent of agents) {
-    const node = nodes.get(agent.id)!;
+    const node = nodes.get(agent.id);
+    if (!node) continue;
     const parent = agent.parent ? nodes.get(agent.parent) : undefined;
     if (parent) parent.children.push(node);
     else roots.push(node);
   }
 
   for (const agent of agents) {
-    const node = nodes.get(agent.id)!;
+    const node = nodes.get(agent.id);
+    if (!node) continue;
     const own = tasksByRequester.get(agent.id) ?? [];
     const subplanners = node.children.length;
     node.children.push(...own);
