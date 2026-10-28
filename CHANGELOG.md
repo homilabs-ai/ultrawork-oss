@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Stricter checks for contributors: lint warnings and formatting now fail CI, `console.log` and non-null assertions aren't allowed in app code, and CI also builds the UI.
+
 ## 0.2.0
 
 First open-source release under the Apache License 2.0. Versions 0.1.x were closed-source.
