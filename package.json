@@ -76,7 +76,7 @@
     "@vitejs/plugin-react": "^6.0.3",
     "babel-plugin-react-compiler": "^1.0.0",
     "drizzle-kit": "^0.31.10",
-    "electron": "^44",
+    "electron": "^45",
     "electron-builder": "^26",
     "oxlint": "^1.71.0",
     "typescript": "~6.0.2",
