@@ -1,19 +1,13 @@
 import { FolderOpen, RotateCcw, Settings2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-import {
-  DesktopOnly,
-  Field,
-  SaveBar,
-  Section,
-  SettingsPage,
-} from "@/components/settings/settings-layout";
-import { useDesktopSettings } from "@/hooks/use-desktop-settings";
+import { DesktopOnly, Field, SaveBar, Section, SettingsPage } from "@/components/settings/settings-layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
-import { desktop, type DesktopSettings } from "@/lib/desktop";
+import { useDesktopSettings } from "@/hooks/use-desktop-settings";
+import { type DesktopSettings, desktop, requireDesktop } from "@/lib/desktop";
 
 export function GeneralSettings() {
   return (
@@ -29,18 +23,18 @@ export function GeneralSettings() {
 }
 
 function SettingsForm() {
-  const bridge = desktop!;
+  const bridge = requireDesktop();
   const { saved, save } = useDesktopSettings();
   const [draft, setDraft] = useState<DesktopSettings | null>(null);
   const [domainsText, setDomainsText] = useState("");
 
-  const reset = (s: DesktopSettings) => {
+  const reset = useCallback((s: DesktopSettings) => {
     setDraft(s);
     setDomainsText(s.sandbox.allowedDomains.join("\n"));
-  };
+  }, []);
   useEffect(() => {
     if (saved.data && !draft) reset(saved.data);
-  }, [saved.data, draft]);
+  }, [saved.data, draft, reset]);
 
   if (!draft) return null;
 

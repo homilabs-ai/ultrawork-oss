@@ -1,14 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import {
-  ArrowLeft,
-  Bot,
-  Boxes,
-  KeyRound,
-  Moon,
-  Settings2,
-  Sun,
-  Wrench,
-} from "lucide-react";
+import { ArrowLeft, Bot, Boxes, KeyRound, Moon, Settings2, Sun, Wrench } from "lucide-react";
 
 import { useResolvedTheme } from "@/hooks/use-resolved-theme";
 import { isDesktop } from "@/lib/desktop";
@@ -29,10 +20,7 @@ export function SettingsSidebar() {
   return (
     <div className="flex min-h-full flex-col">
       <div className="sidebar-header flex h-14 shrink-0 items-center justify-between border-b px-5">
-        <Link
-          to="/runs/new"
-          className="flex items-center gap-2.5 font-semibold"
-        >
+        <Link to="/runs/new" className="flex items-center gap-2.5 font-semibold">
           <span className="grid size-6 place-items-center rounded-md bg-foreground text-[10px] tracking-tighter text-background">
             UW
           </span>
@@ -51,9 +39,7 @@ export function SettingsSidebar() {
       </div>
 
       <nav className="mt-3 space-y-1 border-t px-3 py-4">
-        <div className="label-caption px-2.5 pb-2 settings-sidebar-label">
-          Settings
-        </div>
+        <div className="label-caption px-2.5 pb-2 settings-sidebar-label">Settings</div>
         {settingsItems.map((item) => {
           const Icon = item.icon;
           const label = <span className="settings-sidebar-label">{item.label}</span>;
@@ -77,11 +63,7 @@ export function SettingsSidebar() {
           className="rounded-md p-1.5 hover:bg-muted hover:text-foreground"
           aria-label="Toggle color theme"
         >
-          {theme === "dark" ? (
-            <Moon className="size-4" />
-          ) : (
-            <Sun className="size-4" />
-          )}
+          {theme === "dark" ? <Moon className="size-4" /> : <Sun className="size-4" />}
         </button>
       </div>
     </div>

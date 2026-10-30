@@ -17,10 +17,7 @@ export function resolveTheme(theme: Theme = getTheme()): "light" | "dark" {
 }
 
 export function applyTheme(theme: Theme = getTheme()): void {
-  document.documentElement.classList.toggle(
-    "dark",
-    resolveTheme(theme) === "dark"
-  );
+  document.documentElement.classList.toggle("dark", resolveTheme(theme) === "dark");
 }
 
 export function setTheme(theme: Theme): void {

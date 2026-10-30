@@ -73,9 +73,7 @@ function tool(bin: string): ToolStatus {
 
 function findChrome(): string | undefined {
   const app = "Google Chrome.app";
-  return [path.join("/Applications", app), path.join(os.homedir(), "Applications", app)].find((p) =>
-    fs.existsSync(p),
-  );
+  return [path.join("/Applications", app), path.join(os.homedir(), "Applications", app)].find((p) => fs.existsSync(p));
 }
 
 export async function checkSetup(settings: Settings): Promise<SetupStatus> {

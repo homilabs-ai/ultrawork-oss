@@ -1,8 +1,8 @@
+import { useNavigate } from "@tanstack/react-router";
 import { Command as CommandPrimitive } from "cmdk";
 import { ChevronDown, KeyRound } from "lucide-react";
 import { Fragment, useRef, useState } from "react";
-import { useNavigate } from "@tanstack/react-router";
-
+import type { Effort } from "@/api/runs";
 import { PromptInputButton } from "@/components/ai-elements/prompt-input";
 import {
   Command,
@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { effortLabel, effortsFor, type ModelChoice, type ModelRole, ROLE_LABELS } from "@/hooks/use-model-choice";
-import type { Effort } from "@/api/runs";
 import { PROVIDERS } from "@/lib/providers";
 import { cn } from "@/lib/utils";
 

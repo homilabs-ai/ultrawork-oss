@@ -1,7 +1,6 @@
 import { cva, type VariantProps } from "class-variance-authority";
-
-import { cn } from "@/lib/utils";
 import { STATUS_ICON, STATUS_TEXT, statusIntent } from "@/lib/status";
+import { cn } from "@/lib/utils";
 
 const statusBadgeVariants = cva(
   "inline-flex shrink-0 items-center gap-1.5 uppercase [&_svg]:pointer-events-none [&_svg]:shrink-0",
@@ -15,7 +14,7 @@ const statusBadgeVariants = cva(
     defaultVariants: {
       variant: "text",
     },
-  }
+  },
 );
 
 export type StatusBadgeProps = React.ComponentProps<"span"> &
@@ -46,11 +45,7 @@ export function StatusBadge({
     <span
       data-slot="status-badge"
       data-status={intent}
-      className={cn(
-        statusBadgeVariants({ variant }),
-        STATUS_TEXT[intent],
-        className
-      )}
+      className={cn(statusBadgeVariants({ variant }), STATUS_TEXT[intent], className)}
       {...props}
     >
       {dot && <span className="size-1.5 rounded-full bg-current" />}

@@ -14,7 +14,7 @@ export function splitAttachments(message: string): { text: string; files: string
   const lines = message.trimEnd().split("\n");
   const files: string[] = [];
   while (lines.length > 0) {
-    const line = lines[lines.length - 1]!.trim();
+    const line = (lines.at(-1) ?? "").trim();
     if (line.startsWith("/")) {
       files.unshift(line);
       lines.pop();

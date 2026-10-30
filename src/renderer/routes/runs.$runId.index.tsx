@@ -11,8 +11,7 @@ export type RunSearch = {
 export const Route = createFileRoute("/runs/$runId/")({
   validateSearch: (search: Record<string, unknown>): RunSearch => ({
     task: typeof search.task === "string" ? search.task : undefined,
-    artifact:
-      typeof search.artifact === "string" ? search.artifact : undefined,
+    artifact: typeof search.artifact === "string" ? search.artifact : undefined,
     files: search.files === true || search.files === "true" || undefined,
   }),
   component: GoalsPanels,

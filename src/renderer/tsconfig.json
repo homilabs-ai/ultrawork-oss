@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-        "target": "es2023",
+    "target": "es2023",
     "lib": ["ES2023", "DOM"],
     "module": "esnext",
     // "bun" is here for the colocated *.test.ts files, which run under `bun test`.
@@ -10,16 +10,12 @@
     "paths": {
       "@/*": ["./*"]
     },
-
-    /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
-
-    /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,

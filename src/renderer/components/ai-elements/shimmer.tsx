@@ -2,22 +2,14 @@
 
 import type { MotionProps } from "motion/react";
 import { motion } from "motion/react";
-import type {
-  ComponentType,
-  CSSProperties,
-  ElementType,
-  JSX,
-} from "react";
+import type { ComponentType, CSSProperties, ElementType, JSX } from "react";
 import { memo, useMemo } from "react";
 
 import { cn } from "@/lib/utils";
 
 type MotionHTMLProps = MotionProps & Record<string, unknown>;
 
-const motionComponentCache = new Map<
-  keyof JSX.IntrinsicElements,
-  ComponentType<MotionHTMLProps>
->();
+const motionComponentCache = new Map<keyof JSX.IntrinsicElements, ComponentType<MotionHTMLProps>>();
 
 const getMotionComponent = (element: keyof JSX.IntrinsicElements) => {
   let component = motionComponentCache.get(element);
@@ -36,20 +28,9 @@ export type ShimmerProps = {
   spread?: number;
 };
 
-const ShimmerComponent = ({
-  children,
-  as: Component = "p",
-  className,
-  duration = 2,
-  spread = 2,
-}: ShimmerProps) => {
-  const MotionComponent = getMotionComponent(
-    Component as keyof JSX.IntrinsicElements,
-  );
-  const dynamicSpread = useMemo(
-    () => children.length * spread,
-    [children, spread],
-  );
+const ShimmerComponent = ({ children, as: Component = "p", className, duration = 2, spread = 2 }: ShimmerProps) => {
+  const MotionComponent = getMotionComponent(Component as keyof JSX.IntrinsicElements);
+  const dynamicSpread = useMemo(() => children.length * spread, [children, spread]);
 
   return (
     <MotionComponent
@@ -63,8 +44,7 @@ const ShimmerComponent = ({
       style={
         {
           "--spread": `${dynamicSpread}px`,
-          backgroundImage:
-            "var(--bg), linear-gradient(var(--color-muted-foreground), var(--color-muted-foreground))",
+          backgroundImage: "var(--bg), linear-gradient(var(--color-muted-foreground), var(--color-muted-foreground))",
         } as CSSProperties
       }
       transition={{

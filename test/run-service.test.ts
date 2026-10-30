@@ -2,8 +2,8 @@ import { expect, test } from "bun:test";
 import { mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { loadConfig, openDb, Repo } from "@/core/index.ts";
 import { RunService } from "@/api/run-service.ts";
+import { loadConfig, openDb, Repo } from "@/core/index.ts";
 
 function tmpRepo(): { repo: Repo; close: () => void } {
   const dir = mkdtempSync(join(tmpdir(), "run-service-"));

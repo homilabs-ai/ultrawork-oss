@@ -21,8 +21,8 @@
     "db:studio": "drizzle-kit studio",
     "test": "bun test",
     "typecheck": "tsc --noEmit && tsc --noEmit -p src/renderer",
-    "lint": "biome lint . && oxlint src/renderer",
-    "format": "biome format --write ."
+    "lint": "biome check --error-on-warnings . && oxlint --deny-warnings src/renderer",
+    "format": "biome check --write ."
   },
   "dependencies": {
     "@anthropic-ai/sandbox-runtime": "^0.0.76",

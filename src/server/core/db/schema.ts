@@ -1,4 +1,5 @@
 import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import type { ThinkingLevel } from "../config.ts";
 import type {
   AgentRole,
   AgentStatus,
@@ -9,7 +10,6 @@ import type {
   TaskType,
   TaskVerdict,
 } from "./enums.ts";
-import type { ThinkingLevel } from "../config.ts";
 
 export const runs = sqliteTable("runs", {
   id: text("id").primaryKey(),

@@ -22,11 +22,7 @@ export const Message = ({ className, from, ...props }: MessageProps) => (
 
 export type MessageContentProps = HTMLAttributes<HTMLDivElement>;
 
-export const MessageContent = ({
-  children,
-  className,
-  ...props
-}: MessageContentProps) => (
+export const MessageContent = ({ children, className, ...props }: MessageContentProps) => (
   <div
     className={cn(
       "flex w-fit min-w-0 max-w-full flex-col gap-2 overflow-hidden text-sm",
@@ -42,15 +38,9 @@ export const MessageContent = ({
 
 export type MessageResponseProps = ComponentProps<"div">;
 
-export const MessageResponse = ({
-  className,
-  ...props
-}: MessageResponseProps) => (
+export const MessageResponse = ({ className, ...props }: MessageResponseProps) => (
   <div
-    className={cn(
-      "message-response size-full [&>*:first-child]:mt-0 [&>*:last-child]:mb-0",
-      className,
-    )}
+    className={cn("message-response size-full [&>*:first-child]:mt-0 [&>*:last-child]:mb-0", className)}
     {...props}
   />
 );

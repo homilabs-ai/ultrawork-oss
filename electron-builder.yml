@@ -1,12 +1,5 @@
-# Unsigned local build: `bun run desktop:pack`.
-# Signed + notarized release build (dmg + zip): `bun run desktop:pack --sign`.
-# Publish (download + auto-update feed): `bun run desktop:publish`.
-#
-# appId, mac.identity and publish.url below are for the official Ultrawork releases.
+# appId, mac.identity and publish.url are for the official Ultrawork releases.
 # If you ship your own build, change all three so your app doesn't update from ours.
-#
-# The gateway (src/server) ships as a single compiled executable (scripts/build-gateway.ts);
-# app.asar only holds the Electron shell.
 appId: ai.homilabs.ultrawork
 productName: Ultrawork
 directories:
@@ -37,16 +30,12 @@ mac:
     - zip
   category: public.app-category.productivity
   icon: resources/icon.icns
-  # Developer ID Application cert from the login keychain.
   identity: "HOMI AI Inc. (HQ5SZ69X2B)"
   hardenedRuntime: true
   gatekeeperAssess: false
   entitlements: resources/entitlements.mac.plist
   entitlementsInherit: resources/entitlements.mac.plist
-  # Credentials come from env: APPLE_KEYCHAIN_PROFILE (local, set by desktop-pack)
-  # or APPLE_API_KEY / APPLE_API_KEY_ID / APPLE_API_ISSUER (CI).
   notarize: true
-# Auto-update feed baked into app-update.yml. scripts/publish-release.ts uploads the files.
 publish:
   provider: generic
   url: https://releases.ultrawork.oowa.ai/mac

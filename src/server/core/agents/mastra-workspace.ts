@@ -1,4 +1,4 @@
-import { Workspace, LocalFilesystem, WORKSPACE_TOOLS } from "@mastra/core/workspace";
+import { LocalFilesystem, WORKSPACE_TOOLS, Workspace } from "@mastra/core/workspace";
 import type { Repo } from "@/core/db/repo.ts";
 
 export interface WorkspaceLogContext {

@@ -12,8 +12,43 @@
     }
   },
   "linter": {
-    "enabled": true
+    "enabled": true,
+    "domains": {
+      "react": "recommended"
+    },
+    "rules": {
+      "a11y": {
+        "useSemanticElements": "off"
+      },
+      "correctness": {
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error",
+        "useExhaustiveDependencies": {
+          "level": "error",
+          "options": { "reportUnnecessaryDependencies": false }
+        }
+      },
+      "style": {
+        "noNonNullAssertion": "error"
+      },
+      "suspicious": {
+        "noConsole": { "level": "error", "options": { "allow": ["warn", "error"] } },
+        "noDebugger": "error",
+        "noAlert": "error",
+        "noExplicitAny": "error"
+      }
+    }
   },
+  "overrides": [
+    {
+      "includes": ["scripts/**", "src/server/index.ts"],
+      "linter": { "rules": { "suspicious": { "noConsole": "off" } } }
+    },
+    {
+      "includes": ["test/**", "src/**/*.test.ts"],
+      "linter": { "rules": { "style": { "noNonNullAssertion": "off" } } }
+    }
+  ],
   "vcs": {
     "enabled": true,
     "clientKind": "git",
@@ -21,15 +56,15 @@
   },
   "files": {
     "includes": [
-      "src/main/**",
-      "src/server/**",
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "!src/renderer/routeTree.gen.ts",
       "scripts/**",
       "test/**",
       "*.ts",
-      "!vite.config.ts",
-      "package.json",
-      "biome.json",
-      "tsconfig.json"
+      "*.json",
+      "src/renderer/tsconfig.json",
+      ".github/**/*.json"
     ]
   }
 }

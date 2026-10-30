@@ -1,9 +1,9 @@
 import type { HarnessConfig } from "@/core/config.ts";
 import type { Repo } from "@/core/db/repo.ts";
 import type { AgentRow, TaskRow } from "@/core/db/types.ts";
-import type { Transport } from "@/core/transport/types.ts";
 import type { Handoff } from "@/core/runtime/driver.ts";
 import type { TaskSteering } from "@/core/runtime/steering.ts";
+import type { Transport } from "@/core/transport/types.ts";
 
 export interface PlannerToolContext {
   repo: Repo;

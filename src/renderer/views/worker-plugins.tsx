@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useDesktopSettings } from "@/hooks/use-desktop-settings";
 import { closestEffort, effortsFor } from "@/hooks/use-model-choice";
 import { useModels, useVerifierDefaults } from "@/hooks/use-runs";
-import { desktop, type DesktopSettings } from "@/lib/desktop";
+import { type DesktopSettings, desktop } from "@/lib/desktop";
 import { providerName } from "@/lib/providers";
 
 type VerifierSettings = DesktopSettings["verifier"];
