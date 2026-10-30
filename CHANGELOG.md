@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added a `NOTICE` file. The app now ships `LICENSE` and `NOTICE` in its resources.
 - Stricter checks for contributors: lint warnings and formatting now fail CI, `console.log` and non-null assertions aren't allowed in app code, and CI also builds the UI.
 
 ## 0.2.0

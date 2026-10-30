@@ -24,6 +24,10 @@ extraResources:
     to: chrome-devtools-mcp
   - from: dist/THIRD_PARTY_NOTICES.txt
     to: THIRD_PARTY_NOTICES.txt
+  - from: LICENSE
+    to: LICENSE
+  - from: NOTICE
+    to: NOTICE
 mac:
   target:
     - dmg

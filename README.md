@@ -105,4 +105,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). To report a security issue, see [SECURIT
 
 ## License
 
-[Apache License 2.0](LICENSE)
+Ultrawork is built by [Homi AI](https://homilabs.ai).
+
+Copyright 2026 Homi AI Inc. Licensed under the [Apache License 2.0](LICENSE). See [NOTICE](NOTICE).
