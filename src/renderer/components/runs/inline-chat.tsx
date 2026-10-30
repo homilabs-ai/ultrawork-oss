@@ -1,7 +1,4 @@
-import { FileIcon } from "lucide-react";
-import { desktop } from "@/lib/desktop";
-import { MessageSquareIcon } from "lucide-react";
-
+import { FileIcon, MessageSquareIcon } from "lucide-react";
 import {
   Conversation,
   ConversationContent,
@@ -11,6 +8,7 @@ import {
 import { Message, MessageContent, MessageResponse } from "@/components/ai-elements/message";
 import { Shimmer } from "@/components/ai-elements/shimmer";
 import { ArtifactMarkdown } from "@/components/artifacts/artifact-reference";
+import { desktop } from "@/lib/desktop";
 import { formatChatTimestamp } from "@/lib/format";
 import { buildInlineChatBubbles } from "@/lib/inline-chat";
 import type { PlannerTranscriptItem, Run } from "@/types/runs";
@@ -61,9 +59,7 @@ export function InlineChat({
                     {message.files && message.files.length > 0 && <AttachmentChips paths={message.files} />}
                     {message.text && (
                       <MessageResponse>
-                        <ArtifactMarkdown>
-                          {message.text}
-                        </ArtifactMarkdown>
+                        <ArtifactMarkdown>{message.text}</ArtifactMarkdown>
                       </MessageResponse>
                     )}
                   </MessageContent>

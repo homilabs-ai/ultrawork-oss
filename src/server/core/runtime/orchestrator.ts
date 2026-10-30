@@ -1,16 +1,16 @@
 import type { Database } from "bun:sqlite";
 import { resolve } from "node:path";
-import type { HarnessConfig } from "@/core/config.ts";
-import { openDb } from "@/core/db/db.ts";
-import type { DB } from "@/core/db/db.ts";
-import { Repo, type RunModels } from "@/core/db/repo.ts";
 import { MastraDriver } from "@/core/agents/mastra-driver.ts";
 import { createMastraWorkspace } from "@/core/agents/mastra-workspace.ts";
+import type { HarnessConfig } from "@/core/config.ts";
+import type { DB } from "@/core/db/db.ts";
+import { openDb } from "@/core/db/db.ts";
+import { Repo, type RunModels } from "@/core/db/repo.ts";
 import { EventBus } from "@/core/transport/events.ts";
 import { SqliteTransport } from "@/core/transport/sqlite-transport.ts";
 import type { AgentDriver } from "./driver.ts";
-import { Scheduler, type RunOutcome } from "./scheduler.ts";
 import { shutdownSandbox } from "./sandbox.ts";
+import { type RunOutcome, Scheduler } from "./scheduler.ts";
 
 export class Harness {
   readonly db: DB;

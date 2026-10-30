@@ -14,6 +14,11 @@ declare global {
 export const desktop: DesktopBridge | undefined = window.ultrawork;
 export const isDesktop = desktop !== undefined;
 
+export function requireDesktop(): DesktopBridge {
+  if (!desktop) throw new Error("This view needs the Ultrawork desktop app");
+  return desktop;
+}
+
 export function attachmentPaths(files: File[]): string[] {
   if (!desktop) return [];
   return files.map((f) => desktop.pathForFile(f)).filter(Boolean);

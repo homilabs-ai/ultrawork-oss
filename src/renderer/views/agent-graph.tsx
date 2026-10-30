@@ -1,8 +1,7 @@
 import { getRouteApi } from "@tanstack/react-router";
-
-import { ArtifactPanel } from "@/components/artifacts/artifact-panel";
 import { GraphCanvas } from "@/components/agent-graph/graph-canvas";
 import { NodeInspector } from "@/components/agent-graph/node-inspector";
+import { ArtifactPanel } from "@/components/artifacts/artifact-panel";
 import { useArtifacts, useRunState } from "@/hooks/use-runs";
 import { buildAgentTree, toFlow } from "@/lib/agent-tree";
 

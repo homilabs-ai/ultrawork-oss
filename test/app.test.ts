@@ -2,9 +2,9 @@ import { expect, test } from "bun:test";
 import { mkdirSync, mkdtempSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import type { Harness } from "@/core/index.ts";
 import { createApp } from "@/api/app.ts";
 import { listWorkspaceArtifacts } from "@/api/artifacts.ts";
+import type { Harness } from "@/core/index.ts";
 
 function createFakeHarness(workspaceRoot: string) {
   const calls = {

@@ -18,9 +18,7 @@ function subscribe(onChange: () => void) {
 }
 
 function getSnapshot(): "light" | "dark" {
-  return document.documentElement.classList.contains("dark")
-    ? "dark"
-    : resolveTheme();
+  return document.documentElement.classList.contains("dark") ? "dark" : resolveTheme();
 }
 
 export function useResolvedTheme(): "light" | "dark" {

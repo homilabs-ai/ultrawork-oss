@@ -1,10 +1,4 @@
-import type {
-  AgentRow,
-  EventRow,
-  Repo,
-  RunRow,
-  TaskRow,
-} from "@/core/index.ts";
+import type { AgentRow, EventRow, Repo, RunRow, TaskRow } from "@/core/index.ts";
 
 const PROGRESS_EVENT_LIMIT = 200;
 
@@ -124,9 +118,7 @@ export type RunState = {
 function parsePayload(raw: string): Record<string, unknown> {
   try {
     const parsed = JSON.parse(raw);
-    return parsed && typeof parsed === "object"
-      ? (parsed as Record<string, unknown>)
-      : {};
+    return parsed && typeof parsed === "object" ? (parsed as Record<string, unknown>) : {};
   } catch {
     return {};
   }
@@ -169,14 +161,10 @@ function describeActivity(item: PlannerTranscriptItem): string {
 const STEER_NOTE_PREFIX = "Operator steering note:\n";
 
 function displaySteerText(raw: string): string {
-  return raw.startsWith(STEER_NOTE_PREFIX)
-    ? raw.slice(STEER_NOTE_PREFIX.length)
-    : raw;
+  return raw.startsWith(STEER_NOTE_PREFIX) ? raw.slice(STEER_NOTE_PREFIX.length) : raw;
 }
 
-function countTasksByStatus(
-  tasks: RunTask[],
-): RunTaskCounts {
+function countTasksByStatus(tasks: RunTask[]): RunTaskCounts {
   return {
     pending: tasks.filter((t) => t.status === "pending").length,
     claimed: tasks.filter((t) => t.status === "claimed").length,
@@ -210,13 +198,8 @@ export class RunService {
     return this.repo.listTasks(runId).map((t) => this.serializeTask(t));
   }
 
-  listProgressEvents(
-    runId: string,
-    limit = PROGRESS_EVENT_LIMIT,
-  ): RunEvent[] {
-    return this.repo
-      .listEvents(runId, limit)
-      .map((e) => this.serializeEvent(e));
+  listProgressEvents(runId: string, limit = PROGRESS_EVENT_LIMIT): RunEvent[] {
+    return this.repo.listEvents(runId, limit).map((e) => this.serializeEvent(e));
   }
 
   listRuns(limit = 50): RunSummary[] {
@@ -239,11 +222,7 @@ export class RunService {
     const agent = this.repo.getAgent(run.root_agent_id);
     if (!agent) return null;
 
-    const events = this.repo.listAgentEvents(
-      runId,
-      agent.id,
-      PLANNER_EVENT_LIMIT,
-    );
+    const events = this.repo.listAgentEvents(runId, agent.id, PLANNER_EVENT_LIMIT);
 
     const chronological = [...events].reverse();
 
@@ -329,16 +308,11 @@ export class RunService {
       }
     }
 
-    const turnCount = this.repo.countEventsByType(
-      runId,
-      ["planner.turn.start"],
-      {
-        agentId: agent.id,
-      },
-    );
+    const turnCount = this.repo.countEventsByType(runId, ["planner.turn.start"], {
+      agentId: agent.id,
+    });
 
-    const lastOutput =
-      transcript.findLast((item) => item.kind === "assistant")?.text ?? null;
+    const lastOutput = transcript.findLast((item) => item.kind === "assistant")?.text ?? null;
 
     const tip = transcript.at(-1);
     let currentActivity: string | null = null;
@@ -376,10 +350,7 @@ export class RunService {
       type: event.type,
       timestamp: event.ts,
 
-      message:
-        payloadMsg(parsePayload(event.payload_json)) ??
-        TASK_EVENT_LABELS[event.type] ??
-        event.type,
+      message: payloadMsg(parsePayload(event.payload_json)) ?? TASK_EVENT_LABELS[event.type] ?? event.type,
     }));
 
     const handoffRow = this.repo.getInboxByRef(runId, taskId);
@@ -400,10 +371,7 @@ export class RunService {
     const tasks = this.listTasks(runId);
     const events = this.listProgressEvents(runId);
     const tasksByStatus = countTasksByStatus(tasks);
-    const turnCount = this.repo.countEventsByType(runId, [
-      "planner.turn.start",
-      "worker.turn.start",
-    ]);
+    const turnCount = this.repo.countEventsByType(runId, ["planner.turn.start", "worker.turn.start"]);
     const endTs = run.stopped_at ?? Date.now();
 
     return {

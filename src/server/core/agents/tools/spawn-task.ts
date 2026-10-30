@@ -54,9 +54,7 @@ export function spawnTaskTool({ transport, agent, config, verifierPlugin: forRun
         ok: true,
         taskId: task.id,
         note:
-          type === "verifier"
-            ? "Verifier queued with the original goal and read-only instructions."
-            : "Task queued.",
+          type === "verifier" ? "Verifier queued with the original goal and read-only instructions." : "Task queued.",
       };
     },
   });

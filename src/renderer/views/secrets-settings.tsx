@@ -1,15 +1,9 @@
 import { KeyRound } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import {
-  DesktopOnly,
-  Field,
-  SaveBar,
-  Section,
-  SettingsPage,
-} from "@/components/settings/settings-layout";
-import { useDesktopSettings } from "@/hooks/use-desktop-settings";
+import { DesktopOnly, Field, SaveBar, Section, SettingsPage } from "@/components/settings/settings-layout";
 import { Input } from "@/components/ui/input";
+import { useDesktopSettings } from "@/hooks/use-desktop-settings";
 import { desktop } from "@/lib/desktop";
 
 export function SecretsSettings() {

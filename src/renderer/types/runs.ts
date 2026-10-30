@@ -1,17 +1,6 @@
 export type RunStatus = "running" | "idle";
-export type TaskStatus =
-  | "pending"
-  | "claimed"
-  | "running"
-  | "done"
-  | "failed"
-  | "cancelled";
-export type AgentStatus =
-  | "idle"
-  | "active"
-  | "done"
-  | "failed"
-  | "cancelled";
+export type TaskStatus = "pending" | "claimed" | "running" | "done" | "failed" | "cancelled";
+export type AgentStatus = "idle" | "active" | "done" | "failed" | "cancelled";
 export type AgentRole = "root" | "planner";
 
 export type Run = {

@@ -2,8 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { Moon, Plus, Settings, Sun } from "lucide-react";
 
 import { StatusBadge } from "@/components/ui/status-badge";
-import { formatRelativeTime } from "@/lib/format";
 import { useResolvedTheme } from "@/hooks/use-resolved-theme";
+import { formatRelativeTime } from "@/lib/format";
 import { setTheme } from "@/lib/theme";
 import type { RunStatus, RunSummary } from "@/types/runs";
 
@@ -41,20 +41,19 @@ function SidebarFooter() {
       >
         <Settings className="size-4" />
       </Link>
-      <button type="button" onClick={toggleTheme} className="rounded-md p-1.5 hover:bg-muted hover:text-foreground" aria-label="Toggle color theme">
+      <button
+        type="button"
+        onClick={toggleTheme}
+        className="rounded-md p-1.5 hover:bg-muted hover:text-foreground"
+        aria-label="Toggle color theme"
+      >
         {theme === "dark" ? <Moon className="size-4" /> : <Sun className="size-4" />}
       </button>
     </div>
   );
 }
 
-function SessionCard({
-  run,
-  selected,
-}: {
-  run: RunSummary;
-  selected: boolean;
-}) {
+function SessionCard({ run, selected }: { run: RunSummary; selected: boolean }) {
   const { id, title, status, createdAt, stoppedAt } = run;
 
   return (
@@ -65,12 +64,7 @@ function SessionCard({
       title={`${title}\n${id}`}
       className="row-select row-raised min-h-12 flex-wrap gap-x-2 gap-y-0.5 px-2.5 py-2"
     >
-      <StatusBadge
-        status={status}
-        dot
-        label={LIVE_STATUSES.has(status)}
-        className="text-xs capitalize"
-      >
+      <StatusBadge status={status} dot label={LIVE_STATUSES.has(status)} className="text-xs capitalize">
         {status === "running" ? "working" : "idle"}
       </StatusBadge>
       <span className="row-title text-sm">{title}</span>
@@ -81,18 +75,14 @@ function SessionCard({
   );
 }
 
-export function SessionSidebar({
-  runs,
-  selectedRunId,
-}: {
-  runs: RunSummary[];
-  selectedRunId: string | null;
-}) {
+export function SessionSidebar({ runs, selectedRunId }: { runs: RunSummary[]; selectedRunId: string | null }) {
   return (
     <div className="flex h-full min-h-0 flex-col">
       <div className="sidebar-header flex h-14 shrink-0 items-center justify-between border-b px-5">
         <div className="flex items-center gap-2.5 font-semibold">
-          <span className="grid size-6 place-items-center rounded-md bg-foreground text-[10px] tracking-tighter text-background">UW</span>
+          <span className="grid size-6 place-items-center rounded-md bg-foreground text-[10px] tracking-tighter text-background">
+            UW
+          </span>
           Ultrawork
         </div>
       </div>
@@ -101,11 +91,7 @@ export function SessionSidebar({
         <div className="label-caption px-2.5 py-2">Recent</div>
         <div className="space-y-1">
           {runs.map((run) => (
-            <SessionCard
-              key={run.id}
-              run={run}
-              selected={selectedRunId === run.id}
-            />
+            <SessionCard key={run.id} run={run} selected={selectedRunId === run.id} />
           ))}
         </div>
       </div>

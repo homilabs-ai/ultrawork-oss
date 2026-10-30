@@ -15,10 +15,7 @@ function RunsLayout() {
   return (
     <div className="app-frame flex h-dvh overflow-hidden border bg-card shadow-2xl">
       <aside className="app-sidebar flex min-h-0 w-64 shrink-0 flex-col overflow-hidden border-r bg-sidebar">
-        <SessionSidebar
-          runs={runsQuery.data ?? []}
-          selectedRunId={runId ?? null}
-        />
+        <SessionSidebar runs={runsQuery.data ?? []} selectedRunId={runId ?? null} />
       </aside>
 
       <main className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden bg-background/50">

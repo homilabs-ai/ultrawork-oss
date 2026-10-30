@@ -59,7 +59,12 @@ export class SqliteTransport implements Transport {
       refId: item.refId,
       contentMd: item.contentMd,
     });
-    this.repo.logEvent({ runId: item.runId, agentId: item.agentId, type: "inbox.pushed", payload: { kind: item.kind, refId: item.refId } });
+    this.repo.logEvent({
+      runId: item.runId,
+      agentId: item.agentId,
+      type: "inbox.pushed",
+      payload: { kind: item.kind, refId: item.refId },
+    });
     this.bus.publish({ type: "inbox.pushed", runId: item.runId, agentId: item.agentId, payload: { kind: item.kind } });
     return row;
   }

@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
-import { $ } from "bun";
 import { resolve } from "node:path";
+import { $ } from "bun";
 
 const root = resolve(import.meta.dir, "..");
 const sign = process.argv.includes("--sign");

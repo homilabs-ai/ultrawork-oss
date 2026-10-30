@@ -1,61 +1,20 @@
-# dependencies (bun install)
 node_modules
-jspm_packages
-
-# node / npm / yarn / pnpm debug + runtime
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-.npm
-.node_repl_history
-.yarn-integrity
-.pnp
-.pnp.*
-
-# output
-out
 dist
-*.tgz
-
-# code coverage
+release
 coverage
-*.lcov
-
-# logs
-logs
-_.log
-report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
-
-# dotenv environment variable files
-.env
-.env.development.local
-.env.test.local
-.env.production.local
-.env.local
-
-# caches
-.eslintcache
-.cache
 *.tsbuildinfo
-
-# IntelliJ based IDEs
+.cache
+.tanstack
 .idea
-
-# Finder (MacOS) folder config
 .DS_Store
 
-# harness runtime state
+.env
+.env.*
+!.env.example
+
 *.db
 *.db-shm
 *.db-wal
 data/
 workspace/
 workspace-chrome-profiles/
-
-# electron packaging output
-release/
-
-# TanStack Router plugin cache (src/renderer/routeTree.gen.ts stays committed)
-.tanstack

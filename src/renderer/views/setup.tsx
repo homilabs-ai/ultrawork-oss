@@ -251,8 +251,8 @@ function ExaGroup({ configured }: { configured: boolean }) {
       >
         {!configured ? (
           <p className="mt-2.5 text-xs leading-5 text-muted-foreground">
-            Sign up at <ExternalAnchor href="https://exa.ai">exa.ai</ExternalAnchor>, create a key under API Keys in
-            the dashboard, and paste it here.
+            Sign up at <ExternalAnchor href="https://exa.ai">exa.ai</ExternalAnchor>, create a key under API Keys in the
+            dashboard, and paste it here.
           </p>
         ) : null}
         <form

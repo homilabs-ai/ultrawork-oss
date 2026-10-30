@@ -1,9 +1,6 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { type ReactNode, useEffect, useRef } from "react";
 
-export function ChatColumn({
-  children,
-  composer,
-}: Readonly<{ children: ReactNode; composer: ReactNode }>) {
+export function ChatColumn({ children, composer }: Readonly<{ children: ReactNode; composer: ReactNode }>) {
   const columnRef = useRef<HTMLDivElement>(null);
   const composerRef = useRef<HTMLDivElement>(null);
 

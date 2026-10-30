@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
-import { $, type BunPlugin } from "bun";
 import { mkdirSync, readdirSync, renameSync, rmSync } from "node:fs";
 import { dirname, resolve } from "node:path";
+import { $, type BunPlugin } from "bun";
 
 const root = resolve(import.meta.dir, "..");
 const outfile = resolve(root, "dist/gateway/ultrawork-gateway");
