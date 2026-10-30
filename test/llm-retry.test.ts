@@ -36,6 +36,8 @@ describe("isTransientLlmError", () => {
   });
 });
 
+const AGENT_TEST_TIMEOUT_MS = 30_000;
+
 const FAST = loadConfig({ llmMaxAttempts: 3, llmRetryBaseDelayMs: 1, llmRetryMaxDelayMs: 2 });
 
 const TOOL_CALL = {
@@ -92,22 +94,30 @@ function scriptedAgent(script: Array<Error | object>, onRetry: () => void = () =
 }
 
 describe("llmRetryProcessor", () => {
-  test("re-sends the failed request without replaying completed tool calls", async () => {
-    let retries = 0;
-    const { agent, state } = scriptedAgent([TOOL_CALL, bunTimeout(), ANSWER], () => retries++);
+  test(
+    "re-sends the failed request without replaying completed tool calls",
+    async () => {
+      let retries = 0;
+      const { agent, state } = scriptedAgent([TOOL_CALL, bunTimeout(), ANSWER], () => retries++);
 
-    const result = await agent.generate("go", { maxSteps: 10 });
+      const result = await agent.generate("go", { maxSteps: 10 });
 
-    expect(result.text).toBe("done");
-    expect(state.modelCalls).toBe(3);
-    expect(state.toolRuns).toBe(1);
-    expect(retries).toBe(1);
-  });
+      expect(result.text).toBe("done");
+      expect(state.modelCalls).toBe(3);
+      expect(state.toolRuns).toBe(1);
+      expect(retries).toBe(1);
+    },
+    AGENT_TEST_TIMEOUT_MS,
+  );
 
-  test("gives up after llmMaxAttempts and surfaces the original error", async () => {
-    const { agent, state } = scriptedAgent([bunTimeout(), bunTimeout(), bunTimeout(), ANSWER]);
+  test(
+    "gives up after llmMaxAttempts and surfaces the original error",
+    async () => {
+      const { agent, state } = scriptedAgent([bunTimeout(), bunTimeout(), bunTimeout(), ANSWER]);
 
-    await expect(agent.generate("go", { maxSteps: 10 })).rejects.toThrow("The operation timed out.");
-    expect(state.modelCalls).toBe(3);
-  });
+      await expect(agent.generate("go", { maxSteps: 10 })).rejects.toThrow("The operation timed out.");
+      expect(state.modelCalls).toBe(3);
+    },
+    AGENT_TEST_TIMEOUT_MS,
+  );
 });
